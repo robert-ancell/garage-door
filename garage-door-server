@@ -21,8 +21,6 @@ def toggle_relay ():
 
 class GarageDoorHandler (BaseHTTPRequestHandler):
     def do_GET (self):
-        print (self.path)
-
         if self.path == '/':
             self.send_response (HTTPStatus.OK)
             self.send_header ('Content-type', 'text/html')
