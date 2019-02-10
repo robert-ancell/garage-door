@@ -34,6 +34,7 @@ class GarageDoorHandler (BaseHTTPRequestHandler):
             self.end_headers ()
             self.wfile.write (button_data)
         elif self.path == '/press-button':
+            toggle_relay ()
             self.send_response (HTTPStatus.OK)
             self.end_headers ()
         else:
