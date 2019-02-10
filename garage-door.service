@@ -1,0 +1,12 @@
+[Unit]
+Description=Garage Door Server
+After=network.target
+
+[Service]
+ExecStart=/home/pi/garage-door-server
+WorkingDirectory=/home/pi
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
