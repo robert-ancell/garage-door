@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+print ('Starting garage door server')
+
 from gpiozero import OutputDevice
 from http import HTTPStatus
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -39,4 +41,6 @@ class GarageDoorHandler (BaseHTTPRequestHandler):
             self.end_headers ()
 
 s = HTTPServer (('', HTTP_PORT), GarageDoorHandler)
+
+print ('Ready to serve')
 s.serve_forever ()
