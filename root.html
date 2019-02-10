@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Garage Door</title>
+  </head>
+  <body>
+    <div>
+      <script>
+        function pressButton () {
+          var req = new XMLHttpRequest ();
+          req.open ("GET", "press-button")
+          req.send ()
+        }
+      </script>
+      <button type="button" onclick="pressButton ()">
+        <img src="button.png" alt="Open Door"/>
+      </button>
+    </div>
+  </body>
+</html>
