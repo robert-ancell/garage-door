@@ -5,13 +5,14 @@ from http import HTTPStatus
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from time import sleep
 
-RELAY_GPIO = 4
+HTTP_PORT   = 80
+RELAY_PIN   = 4
 RELAY_DELAY = 0.3
 
 root_html = open ('root.html').read ()
 button_data = open ('button.png', 'rb').read ()
 
-device = OutputDevice (RELAY_GPIO, active_high = False)
+device = OutputDevice (RELAY_PIN, active_high = False)
 
 def toggle_relay ():
     device.on ()
@@ -39,5 +40,5 @@ class GarageDoorHandler (BaseHTTPRequestHandler):
             self.send_response (HTTPStatus.NOT_FOUND)
             self.end_headers ()
 
-s = HTTPServer (('', 8080), GarageDoorHandler)
+s = HTTPServer (('', HTTP_PORT), GarageDoorHandler)
 s.serve_forever ()
