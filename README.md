@@ -7,3 +7,4 @@ Install with:
 
     snap install garage-door
     snap connect garage-door:gpio pi:bcm-gpio-4
+    snap start garage-door
