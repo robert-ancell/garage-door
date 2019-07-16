@@ -19,8 +19,6 @@ parts:
   garage-door-deps:
     plugin: python
     python-version: python3
-    python-packages:
-      - RPi.GPIO
   garage-door:
     plugin: dump
     source: .
@@ -33,6 +31,6 @@ apps:
   garage-door-server:
     daemon: simple
     command: garage-door-server
-    plugs: [ gpio, physical-memory-control, physical-memory-observe ]
+    plugs: [ gpio ]
     environment:
       PYTHONPATH: $SNAP/lib/python3.6/site-packages
