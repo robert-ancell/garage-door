@@ -32,6 +32,6 @@ apps:
   garage-door-server:
     daemon: simple
     command: garage-door-server
-    plugs: [ gpio ]
+    plugs: [ gpio, network-bind ]
     environment:
       PYTHONPATH: $SNAP/lib/python3.6/site-packages
