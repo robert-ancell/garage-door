@@ -20,7 +20,6 @@ parts:
     plugin: python
     python-version: python3
     python-packages:
-      - gpiozero
       - RPi.GPIO
   garage-door:
     plugin: dump

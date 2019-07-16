@@ -2,7 +2,7 @@
 
 print ('Starting garage door server')
 
-from gpiozero import OutputDevice
+import RPi.GPIO as GPIO
 from http import HTTPStatus
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from time import sleep
@@ -14,12 +14,13 @@ RELAY_DELAY = 0.3
 root_html = open ('root.html').read ()
 button_data = open ('button.png', 'rb').read ()
 
-device = OutputDevice (RELAY_PIN, active_high = False)
+GPIO.setmode (GPIO.BCM)
+GPIO.setup (RELAY_PIN, GPIO.OUT, initial = GPIO.HIGH)
 
 def toggle_relay ():
-    device.on ()
+    GPIO.output (RELAY_PIN, GPIO.LOW)
     sleep (RELAY_DELAY)
-    device.off ()
+    GPIO.output (RELAY_PIN, GPIO.HIGH)
 
 class GarageDoorHandler (BaseHTTPRequestHandler):
     def do_GET (self):
