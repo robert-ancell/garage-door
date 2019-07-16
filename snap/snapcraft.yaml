@@ -34,34 +34,6 @@ apps:
   garage-door-server:
     daemon: simple
     command: garage-door-server
-    plugs:
-      - bcm-gpio-0
-      - bcm-gpio-1
-      - bcm-gpio-2
-      - bcm-gpio-3
-      - bcm-gpio-4
-      - bcm-gpio-5
-      - bcm-gpio-6
-      - bcm-gpio-7
-      - bcm-gpio-8
-      - bcm-gpio-9
-      - bcm-gpio-10
-      - bcm-gpio-11
-      - bcm-gpio-12
-      - bcm-gpio-13
-      - bcm-gpio-14
-      - bcm-gpio-15
-      - bcm-gpio-16
-      - bcm-gpio-17
-      - bcm-gpio-18
-      - bcm-gpio-19
-      - bcm-gpio-20
-      - bcm-gpio-21
-      - bcm-gpio-22
-      - bcm-gpio-23
-      - bcm-gpio-24
-      - bcm-gpio-25
-      - bcm-gpio-26
-      - bcm-gpio-27
+    plugs: [ gpio ]
     environment:
       PYTHONPATH: $SNAP/lib/python3.6/site-packages
