@@ -33,6 +33,6 @@ apps:
   garage-door-server:
     daemon: simple
     command: garage-door-server
-    plugs: [ gpio ]
+    plugs: [ gpio, physical-memory-control, physical-memory-observe ]
     environment:
       PYTHONPATH: $SNAP/lib/python3.6/site-packages
