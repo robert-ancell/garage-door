@@ -19,6 +19,7 @@ parts:
   garage-door-deps:
     plugin: python
     python-version: python3
+    python-packages: []
   garage-door:
     plugin: dump
     source: .

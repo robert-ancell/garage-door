@@ -4,14 +4,16 @@ print ('Starting garage door server')
 
 from http import HTTPStatus
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from os import environ
 from time import sleep
 
 HTTP_PORT   = 80
 RELAY_DELAY = 0.3
 DEVICE = '/sys/class/gpio/gpio4'
+DATA_PATH = environ['SNAP']
 
-root_html = open ('root.html').read ()
-button_data = open ('button.png', 'rb').read ()
+root_html = open (DATA_PATH + '/root.html').read ()
+button_data = open (DATA_PATH + '/button.png', 'rb').read ()
 
 def write_device (name, value):
     open (DEVICE + '/' + name, 'w').write (value)
