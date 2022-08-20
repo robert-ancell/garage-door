@@ -12,7 +12,15 @@ dependencies:
   http: 0.13.5
   multicast_dns: ^0.3.2
 
+dev_dependencies:
+  flutter_launcher_icons: ^0.10.0
+
 flutter:
   uses-material-design: true
   assets:
     - images/button.png
+
+flutter_icons:
+  android: "ic_launcher"
+  image_path: "images/button.png"
+  min_sdk_android: 21
