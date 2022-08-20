@@ -36,21 +36,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          OutlinedButton(
-              child: Text('Press Me'),
-              onPressed: () async {
-                var address = await lookupLocalServiceAddress(
-                    'button._garagedoor._tcp.local');
-                if (address != null) {
-                  http.get(
-                      Uri.http('${address.address.address}:${address.port}', '/press-button'));
-                }
-              }),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            OutlinedButton(
+                child: Image.asset('images/button.png'),
+                onPressed: () async {
+                  var address = await lookupLocalServiceAddress(
+                      'button._garagedoor._tcp.local');
+                  if (address != null) {
+                    http.get(Uri.http(
+                        '${address.address.address}:${address.port}',
+                        '/press-button'));
+                  }
+                }),
+          ],
+        ),
       ),
     );
   }
