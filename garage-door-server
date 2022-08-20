@@ -6,11 +6,19 @@ from http import HTTPStatus
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from os import environ
 from time import sleep
+from zeroconf import ServiceInfo, Zeroconf
 
 HTTP_PORT   = 80
 RELAY_DELAY = 0.3
 DEVICE = '/sys/class/gpio/gpio4'
 DATA_PATH = environ['SNAP']
+
+# Register service on mDNS
+info = ServiceInfo ('_garagedoor._tcp.local.',
+                    'button._garagedoor._tcp.local.',
+		    port=HTTP_PORT)
+zeroconf = Zeroconf ()
+zeroconf.register_service (info)
 
 root_html = open (DATA_PATH + '/root.html').read ()
 button_data = open (DATA_PATH + '/button.png', 'rb').read ()
