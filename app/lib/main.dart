@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:multicast_dns/multicast_dns.dart';
 
-import 'dns.dart';
-
 Future<void> main() async {
   final mDnsClient = MDnsClient();
   await mDnsClient.start();
@@ -21,13 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(mDnsClient: mDnsClient),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  final MDnsClient mDnsClient;
+
+  MyHomePage({Key? key, required this.mDnsClient}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -44,13 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
             OutlinedButton(
                 child: Image.asset('images/button.png'),
                 onPressed: () async {
-                  var address = await lookupLocalServiceAddress(
-                      'button._garagedoor._tcp.local');
-                  if (address != null) {
-                    http.get(Uri.http(
-                        '${address.address.address}:${address.port}',
-                        '/press-button'));
-                  }
+                  var record = await widget.mDnsClient
+                      .lookup<IPAddressResourceRecord>(
+                          ResourceRecordQuery.addressIPv4('garage-door.local'))
+                      .first;
+                  var address = record.address;
+                  http.get(Uri.http('${address.address}', '/press-button'));
                 }),
           ],
         ),
